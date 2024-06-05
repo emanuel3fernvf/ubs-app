@@ -1,29 +1,30 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Profile') }}
-        </h2>
+<x-app-newp-layout>
+
+    <x-slot name="style">
+        @vite(['resources/scss/profile.scss'])
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    <livewire:profile.update-profile-information-form />
-                </div>
-            </div>
+    <x-slot name="header">
+        <div class="breadcrumb-item">
+            @if(request()->routeIs('profile'))
+                {{ __('Perfil') }}
+            @else
+                <a href="{{ route('profile') }}">{{ __('Perfil') }}</a>
+            @endif
+        </div>
+    </x-slot>
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    <livewire:profile.update-password-form />
-                </div>
-            </div>
+    <div class="d-flex flex-column gap-3">
+        <div class="actions p-3">
+            <livewire:profile.update-profile-information-form />
+        </div>
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    <livewire:profile.delete-user-form />
-                </div>
-            </div>
+        <div class="actions p-3">
+            <livewire:profile.update-password-form />
+        </div>
+
+        <div class="actions p-3 mb-3">
+            <livewire:profile.delete-user-form />
         </div>
     </div>
-</x-app-layout>
+</x-app-newp-layout>
