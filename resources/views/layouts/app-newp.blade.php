@@ -28,7 +28,7 @@
             @if (isset($header))
                 <header class="page-header bg-nav content-p sidebar-margin">
                     <nav aria-label="breadcrumb">
-                        <div class="breadcrumb m-0">
+                        <div class="breadcrumb m-0 text-white">
                             <div class="breadcrumb-item">
                                 @if(request()->routeIs('dashboard.newp'))
                                     {{ __('Dashboard') }}
@@ -46,6 +46,26 @@
             <main class="content-p bg-nav sidebar-margin">
                 {{ $slot }}
             </main>
+
+            <div
+                id="general-response-modal"
+                aria-labelledby="general-response-modal"
+                class="modal fade" tabindex="-1"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">...</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer"></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </body>
 </html>

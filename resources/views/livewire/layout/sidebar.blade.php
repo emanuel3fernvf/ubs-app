@@ -19,14 +19,16 @@ new class extends Component
 <nav id="sidebar" class="bg-nav">
     <div id="sidebar_content">
         <ul id="side_items">
-            <li class="side_item">
-                <a href="#">
+            <li class="side_item @if (request()->routeIs('dashboard.patient')) active @endif">
+                <a
+                    href="{{ route('dashboard.patient') }}"
+                    wire:navigate>
                     <i class="fa-solid fa-hospital-user"></i>
                     <span class="item-description">Paciente</span>
                 </a>
             </li>
 
-            <li class="side_item active">
+            <li class="side_item">
                 <a href="#">
                     <i class="fa-solid fa-hospital-user"></i>
                     <span class="item-description">Profissional</span>
