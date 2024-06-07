@@ -14,12 +14,16 @@
         <!-- Scripts -->
         @vite(['resources/js/app-newp.js'])
 
+        @if (isset($js))
+            {{ $js }}
+        @endif
+
         @if (isset($style))
             {{ $style }}
         @endif
     </head>
     <body class="bg-nav nav-top-margin">
-        <div class="app-screen" data-bs-theme="dark">
+        <div class="app-screen bg-nav" data-bs-theme="dark">
             <livewire:layout.navigation-newp />
 
             <livewire:layout.sidebar />
@@ -49,13 +53,13 @@
 
             <div
                 id="general-response-modal"
-                aria-labelledby="general-response-modal"
+                aria-labelledby="generalResponseModalLabel"
                 class="modal fade" tabindex="-1"
                 aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">...</h5>
+                            <h1 class="modal-title fs-5" id="generalResponseModalLabel">...</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">

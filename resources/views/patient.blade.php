@@ -1,7 +1,26 @@
 <x-app-newp-layout>
 
-    <x-slot name="style">
-        @vite(['resources/scss/profile.scss'])
+    <x-slot name="js">
+        <script>
+            document.addEventListener("DOMContentLoaded", function(event) {
+
+                window.patientFormModalEl = document.getElementById('patient-form-modal');
+                window.patientFormModal = new bootstrap.Modal(patientFormModalEl);
+
+                window.addEventListener('close-patient-form-modal', event => {
+                    patientFormModal.hide();
+                });
+
+                window.addEventListener('open-patient-form-modal', event => {
+                    patientFormModal.show();
+                });
+
+                patientFormModalEl.addEventListener('hidden.bs.modal', event => {
+                    Livewire.dispatch('patient-list-render');
+                })
+
+            });
+        </script>
     </x-slot>
 
     <x-slot name="header">
@@ -17,6 +36,10 @@
     <div class="d-flex flex-column gap-3">
         <div class="actions p-3">
             <livewire:patient.patient-list />
+        </div>
+
+        <div class="actions p-3">
+            <livewire:patient.patient-form />
         </div>
     </div>
 </x-app-newp-layout>

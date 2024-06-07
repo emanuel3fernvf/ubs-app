@@ -4,6 +4,7 @@ namespace App\Livewire\Patient;
 
 use App\Services\Patient\PatientService;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -21,6 +22,7 @@ class PatientList extends Component
 
     const PER_PAGE = 10;
 
+    #[On('patient-list-render')]
     public function render()
     {
         $permission = 'permission';
@@ -46,7 +48,7 @@ class PatientList extends Component
     {
         $permission = 'patient';
         if (! $permission) {
-            abort(403, __('messages.unauthorized.unauthorized'));
+            abort(403, __('messages.unauthorized'));
         }
 
         $service = new PatientService(Auth::user());

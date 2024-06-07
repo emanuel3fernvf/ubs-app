@@ -20,7 +20,10 @@ class Patient extends Model
         'birth_date',
         'phone',
         'status',
-        'address',
+        'address_street',
+        'address_number',
+        'address_complement',
+        'address_neighborhood',
     ];
 
     /**

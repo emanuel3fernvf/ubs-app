@@ -13,7 +13,7 @@ Route::middleware(['auth', 'verified'])
         Route::view('/newp', 'dashboard-newp')
             ->name('.newp');
 
-        Route::view('/patient', 'patient')
+        Route::view('/paciente', 'patient')
             ->name('.patient');
     });
 

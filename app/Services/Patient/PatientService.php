@@ -73,7 +73,7 @@ class PatientService
 
             DB::rollBack();
 
-            $mensagem = __('messages').": \n";
+            $mensagem = __('messages.patient.error.create').": \n";
 
             return [
                 'success' => false,
@@ -85,7 +85,7 @@ class PatientService
         return [
             'success' => true,
             'type' => 'success',
-            'message' => __('messages'),
+            'message' => __('messages.patient.success.create'),
         ];
     }
 
@@ -108,7 +108,7 @@ class PatientService
 
             DB::rollBack();
 
-            $mensagem = __('messages').": \n";
+            $mensagem = __('messages.patient.error.update').": \n";
 
             return [
                 'success' => false,
@@ -120,7 +120,7 @@ class PatientService
         return [
             'success' => true,
             'type' => 'success',
-            'message' => __('messages'),
+            'message' => __('messages.patient.success.update'),
         ];
     }
 
@@ -180,7 +180,7 @@ class PatientService
         } catch (\Exception $e) {
             return [
                 'success' => false,
-                'message' => __('messages'),
+                'message' => __('messages.patient.error.find'),
                 'data' => [],
             ];
         }

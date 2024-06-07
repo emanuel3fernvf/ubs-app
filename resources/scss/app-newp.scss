@@ -31,7 +31,7 @@ $fa-font-path: '~fontawesome/webfonts';
 }
 
 .bg-nav {
-    background-color: #0f0f0f;
+    background-color: var(--bs-body-bg);
 }
 
 .content-p {

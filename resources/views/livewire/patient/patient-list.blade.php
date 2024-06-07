@@ -1,9 +1,10 @@
 <div>
     <div class="mb-3">
-        <button class="btn btn-primary" type="button">
+        <x-primary-button type="button"
+            wire:click="$dispatch('patient-new')">
             <i class="fa-solid fa-plus"></i>
             Novo paciente
-        </button>
+        </x-primary-button>
     </div>
     <table class="table">
         <thead>
@@ -31,11 +32,19 @@
                             </button>
 
                             <div class="dropdown-menu pt-2 px-2">
-                                <button
-                                    class="btn btn-danger btn-sm mb-2"
+
+                                <x-primary-button type="button"
+                                    class="btn-sm mb-2"
+                                    wire:click="$dispatch('patient-edit', { patientId: {{ $patient->id }} })">
+                                    <i class="fa-solid fa-pencil-alt"></i>
+                                    Editar
+                                </x-primary-button>
+
+                                <x-danger-button type="button"
+                                    class="btn-sm mb-2"
                                     wire:click="confirm('delete', {{ $patient->id }})">
                                     <i class="fa-solid fa-trash"></i> Remover
-                                </button>
+                                </x-danger-button>
                             </div>
                         </div>
                     </td>
