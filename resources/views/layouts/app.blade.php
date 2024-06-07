@@ -11,26 +11,71 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
+
+        @vite(['resources/scss/app.scss'])
+
+        @if (isset($style))
+            {{ $style }}
+        @endif
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <body class="bg-nav nav-top-margin">
+        <div class="app-screen bg-nav" data-bs-theme="dark">
             <livewire:layout.navigation />
+
+            <livewire:layout.sidebar />
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
+                <header class="page-header bg-nav content-p sidebar-margin">
+                    <nav aria-label="breadcrumb">
+                        <div class="breadcrumb m-0 text-white">
+                            <div class="breadcrumb-item">
+                                @if(request()->routeIs('dashboard'))
+                                    {{ __('Dashboard') }}
+                                @else
+                                    <a href="{{ route('dashboard') }}" wire:navigate>{{ __('Dashboard') }}</a>
+                                @endif
+                            </div>
+                            {{ $header }}
+                        </div>
+                    </nav>
                 </header>
             @endif
 
             <!-- Page Content -->
-            <main>
+            <main class="content-p bg-nav sidebar-margin">
                 {{ $slot }}
             </main>
+
+            <div
+                id="general-response-modal"
+                aria-labelledby="generalResponseModalLabel"
+                class="modal fade" tabindex="-1"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="generalResponseModalLabel">...</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer"></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </body>
+
+    @livewireScripts
+
+    <!-- Scripts -->
+    @vite(['resources/js/app.js'])
+
+    @if (isset($js))
+        {{ $js }}
+    @endif
 </html>

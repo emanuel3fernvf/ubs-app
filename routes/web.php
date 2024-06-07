@@ -2,16 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+Route::view('/', 'index');
 
 Route::middleware(['auth', 'verified'])
     ->prefix('dashboard')
     ->name('dashboard')
     ->group(function () {
         Route::view('/', 'dashboard');
-
-        Route::view('/newp', 'dashboard-newp')
-            ->name('.newp');
 
         Route::view('/paciente', 'patient')
             ->name('.patient');

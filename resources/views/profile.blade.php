@@ -1,4 +1,4 @@
-<x-app-newp-layout>
+<x-app-layout>
 
     <x-slot name="style">
         @vite(['resources/scss/profile.scss'])
@@ -27,4 +27,4 @@
             <livewire:profile.delete-user-form />
         </div>
     </div>
-</x-app-newp-layout>
+</x-app-layout>

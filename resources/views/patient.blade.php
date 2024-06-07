@@ -1,4 +1,4 @@
-<x-app-newp-layout>
+<x-app-layout>
 
     <x-slot name="js">
         <script>
@@ -40,4 +40,4 @@
 
         <livewire:patient.patient-form />
     </div>
-</x-app-newp-layout>
+</x-app-layout>
