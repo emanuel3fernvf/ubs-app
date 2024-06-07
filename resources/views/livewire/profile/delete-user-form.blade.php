@@ -23,13 +23,13 @@ new class extends Component
     }
 }; ?>
 
-<section class="space-y-6">
-    <header>
-        <h2 class="text-lg font-medium">
+<section>
+    <header class="theme-color">
+        <h2>
             {{ __('Deletar conta') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        <p>
             {{ __('Depois que sua conta for excluída, todos os seus recursos e dados serão excluídos permanentemente. Antes de excluir sua conta, baixe todos os dados ou informações que deseja reter.') }}
         </p>
     </header>
@@ -40,13 +40,13 @@ new class extends Component
     >{{ __('Deletar conta') }}</x-danger-button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable>
-        <form wire:submit="deleteUser" class="p-6">
+        <form wire:submit="deleteUser" class="p-6 theme-color">
 
-            <h2 class="text-lg font-medium">
+            <h2>
                 {{ __('Tem certeza de que deseja excluir sua conta?') }}
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            <p>
                 {{ __('Depois que sua conta for excluída, todos os seus recursos e dados serão excluídos permanentemente. Antes de excluir sua conta, baixe todos os dados ou informações que deseja reter.') }}
             </p>
 

@@ -11,12 +11,9 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <!-- Scripts -->
-        @vite(['resources/js/app-newp.js'])
+        @livewireStyles
 
-        @if (isset($js))
-            {{ $js }}
-        @endif
+        @vite(['resources/scss/app-newp.scss'])
 
         @if (isset($style))
             {{ $style }}
@@ -72,4 +69,13 @@
 
         </div>
     </body>
+
+    @livewireScripts
+
+    <!-- Scripts -->
+    @vite(['resources/js/app-newp.js'])
+
+    @if (isset($js))
+        {{ $js }}
+    @endif
 </html>

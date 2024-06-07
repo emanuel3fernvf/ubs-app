@@ -26,31 +26,31 @@
 
                             <div class="col-12 mb-3">
                                 <x-input-label for="name" :value="__('Nome:')" />
-                                <x-text-input wire:model="name" id="name" name="name" type="text" required autofocus autocomplete="name" />
+                                <x-text-input wire:model="name" id="name" name="name" type="text" required autocomplete="off" />
                                 <x-input-error class="mt-2" :messages="$errors->get('name')" />
                             </div>
 
                             <div class="col-12 mb-3">
                                 <x-input-label for="cpf" :value="__('Cpf:')" />
-                                <x-text-input wire:model="cpf" id="cpf" name="cpf" type="text" required autofocus autocomplete="cpf" />
+                                <x-text-input wire:model="cpf" id="cpf" name="cpf" type="text" required autocomplete="off" />
                                 <x-input-error class="mt-2" :messages="$errors->get('cpf')" />
                             </div>
 
                             <div class="col-12 mb-3">
                                 <x-input-label for="birth_date" :value="__('Data de nascimento:')" />
-                                <x-text-input wire:model="birth_date" id="birth_date" name="birth_date" type="date" required autofocus autocomplete="birth_date" />
+                                <x-text-input wire:model="birth_date" id="birth_date" name="birth_date" type="date" required autocomplete="off" />
                                 <x-input-error class="mt-2" :messages="$errors->get('birth_date')" />
                             </div>
 
                             <div class="col-12 mb-3">
                                 <x-input-label for="phone" :value="__('Telefone:')" />
-                                <x-text-input wire:model="phone" id="phone" name="phone" type="text" required autofocus autocomplete="phone" />
+                                <x-text-input wire:model="phone" id="phone" name="phone" type="text" required autocomplete="off" />
                                 <x-input-error class="mt-2" :messages="$errors->get('phone')" />
                             </div>
 
                             <div class="col-12 mb-3">
                                 <x-input-label for="status" :value="__('Status:')" />
-                                <x-select-input wire:model="status" id="status" name="status" required autofocus>
+                                <x-select-input wire:model="status" id="status" name="status" required>
                                     <option value="">Selecione</option>
                                     <option value="active">Ativo</option>
                                     <option value="inactive">Inativo</option>
@@ -60,25 +60,25 @@
 
                             <div class="col-12 mb-3">
                                 <x-input-label for="address_street" :value="__('Rua:')" />
-                                <x-text-input wire:model="address_street" id="address_street" name="address_street" type="text" required autofocus autocomplete="address_street" />
+                                <x-text-input wire:model="address_street" id="address_street" name="address_street" type="text" required autocomplete="off" />
                                 <x-input-error class="mt-2" :messages="$errors->get('address_street')" />
                             </div>
 
                             <div class="col-12 mb-3">
                                 <x-input-label for="address_number" :value="__('Número:')" />
-                                <x-text-input wire:model="address_number" id="address_number" name="address_number" type="text" required autofocus autocomplete="address_number" />
+                                <x-text-input wire:model="address_number" id="address_number" name="address_number" type="text" required autocomplete="off" />
                                 <x-input-error class="mt-2" :messages="$errors->get('address_number')" />
                             </div>
 
                             <div class="col-12 mb-3">
                                 <x-input-label for="address_complement" :value="__('Complemento:')" />
-                                <x-text-input wire:model="address_complement" id="address_complement" name="address_complement" type="text" required autofocus autocomplete="address_complement" />
+                                <x-text-input wire:model="address_complement" id="address_complement" name="address_complement" type="text" required autocomplete="off" />
                                 <x-input-error class="mt-2" :messages="$errors->get('address_complement')" />
                             </div>
 
                             <div class="col-12 mb-3">
                                 <x-input-label for="address_neighborhood" :value="__('Bairro:')" />
-                                <x-text-input wire:model="address_neighborhood" id="address_neighborhood" name="address_neighborhood" type="text" required autofocus autocomplete="address_neighborhood" />
+                                <x-text-input wire:model="address_neighborhood" id="address_neighborhood" name="address_neighborhood" type="text" required autocomplete="off" />
                                 <x-input-error class="mt-2" :messages="$errors->get('address_neighborhood')" />
                             </div>
 

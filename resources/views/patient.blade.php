@@ -38,8 +38,6 @@
             <livewire:patient.patient-list />
         </div>
 
-        <div class="actions p-3">
-            <livewire:patient.patient-form />
-        </div>
+        <livewire:patient.patient-form />
     </div>
 </x-app-newp-layout>

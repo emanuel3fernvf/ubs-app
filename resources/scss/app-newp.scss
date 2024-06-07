@@ -26,6 +26,11 @@ $fa-font-path: '~fontawesome/webfonts';
     color: #fff;
 }
 
+[data-bs-theme=dark] .theme-color,
+[data-bs-theme=dark] .form-label {
+    color: var(--bs-body-color);
+}
+
 .app-screen {
     min-height: 100vh;
 }

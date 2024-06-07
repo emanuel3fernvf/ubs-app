@@ -1,5 +1,3 @@
-import '../scss/app-newp.scss';
-
 import * as bootstrap from 'bootstrap';
 window.bootstrap = bootstrap;
 
