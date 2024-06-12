@@ -12,7 +12,7 @@ new class extends Component
     {
         $logout();
 
-        $this->redirect('/', navigate: true);
+        $this->redirect('/');
     }
 }; ?>
 
@@ -20,17 +20,31 @@ new class extends Component
     <div id="sidebar_content">
         <ul id="side_items">
             <li class="side_item @if (request()->routeIs('dashboard.patient')) active @endif">
-                <a
-                    href="{{ route('dashboard.patient') }}"
-                    wire:navigate>
+                <a href="{{ route('dashboard.patient') }}"
+                    data-bs-toggle="tooltip"
+                    data-bs-title="{{ __('Paciente') }}"
+                    data-bs-custom-class="custom-tooltip">
                     <i class="fa-solid fa-hospital-user"></i>
                     <span class="item-description">Paciente</span>
                 </a>
             </li>
 
-            <li class="side_item">
-                <a href="#">
-                    <i class="fa-solid fa-hospital-user"></i>
+            <li class="side_item @if (request()->routeIs('dashboard.specialty')) active @endif">
+                <a href="{{ route('dashboard.specialty') }}"
+                    data-bs-toggle="tooltip"
+                    data-bs-title="{{ __('Especialidade') }}"
+                    data-bs-custom-class="custom-tooltip">
+                    <i class="fas fa-users"></i>
+                    <span class="item-description">Especialidade</span>
+                </a>
+            </li>
+
+            <li class="side_item @if (request()->routeIs('dashboard.professional')) active @endif">
+                <a href="{{ route('dashboard.professional') }}"
+                    data-bs-toggle="tooltip"
+                    data-bs-title="{{ __('Profissional') }}"
+                    data-bs-custom-class="custom-tooltip">
+                    <i class="fas fa-user-md"></i>
                     <span class="item-description">Profissional</span>
                 </a>
             </li>
@@ -42,7 +56,10 @@ new class extends Component
     </div>
 
     <div id="logout">
-        <button id="logout_btn" wire:click="logout">
+        <button id="logout_btn" wire:click="logout"
+            data-bs-toggle="tooltip"
+            data-bs-title="{{ __('Logout') }}"
+            data-bs-custom-class="custom-tooltip">
             <div>
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <span class="item-description">Logout</span>

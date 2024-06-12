@@ -12,7 +12,7 @@ new class extends Component
     {
         $logout();
 
-        $this->redirect('/', navigate: true);
+        $this->redirect('/');
     }
 }; ?>
 
@@ -33,7 +33,7 @@ new class extends Component
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a class="dropdown-item" href="{{ route('profile') }}" wire:navigate>
+                            <a class="dropdown-item" href="{{ route('profile') }}">
                                 {{ __('Perfil') }}
                             </a>
                         </li>

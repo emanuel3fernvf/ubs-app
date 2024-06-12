@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Patient extends Model
+class Specialty extends Model
 {
     use HasFactory;
 
@@ -14,7 +15,7 @@ class Patient extends Model
      *
      * @var string
      */
-    protected $table = 'patients';
+    protected $table = 'specialties';
 
     /**
      * The attributes that are mass assignable.
@@ -23,25 +24,14 @@ class Patient extends Model
      */
     protected $fillable = [
         'name',
-        'cpf',
-        'birth_date',
-        'phone',
         'status',
-        'address_street',
-        'address_number',
-        'address_complement',
-        'address_neighborhood',
     ];
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
+     * Return related professionals
      */
-    protected function casts(): array
+    public function professionals(): HasMany
     {
-        return [
-            'birth_date' => 'datetime:Y-m-d',
-        ];
+        return $this->hasMany(Professional::class, 'specialty_id');
     }
 }

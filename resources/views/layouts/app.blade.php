@@ -34,7 +34,7 @@
                                 @if(request()->routeIs('dashboard'))
                                     {{ __('Dashboard') }}
                                 @else
-                                    <a href="{{ route('dashboard') }}" wire:navigate>{{ __('Dashboard') }}</a>
+                                    <a href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
                                 @endif
                             </div>
                             {{ $header }}

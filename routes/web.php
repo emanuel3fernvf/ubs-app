@@ -12,6 +12,12 @@ Route::middleware(['auth', 'verified'])
 
         Route::view('/paciente', 'patient')
             ->name('.patient');
+
+        Route::view('/especialidade', 'specialty')
+            ->name('.specialty');
+
+        Route::view('/profissional', 'professional')
+            ->name('.professional');
     });
 
 Route::view('perfil', 'profile')

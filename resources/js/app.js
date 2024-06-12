@@ -1,6 +1,9 @@
 import * as bootstrap from 'bootstrap';
 window.bootstrap = bootstrap;
 
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
 import jQuery from 'jquery';
 window.$ = jQuery;
 
@@ -16,11 +19,10 @@ window.toastr.options = {
     "progressBar": true
 };
 
-document.getElementById('open_btn').addEventListener('click', function () {
-    document.getElementById('sidebar').classList.toggle('open-sidebar');
-});
-
-$(document).ready(function() {
+document.addEventListener("DOMContentLoaded", function(event) {
+    document.getElementById('open_btn').addEventListener('click', function () {
+        document.getElementById('sidebar').classList.toggle('open-sidebar');
+    });
 
     window.generalResponseModalEl = document.getElementById('general-response-modal');
     window.generalResponseModal = new bootstrap.Modal(generalResponseModalEl);
@@ -59,4 +61,4 @@ $(document).ready(function() {
         generalResponseModal.show();
     });
 
-});
+}, { once: true });

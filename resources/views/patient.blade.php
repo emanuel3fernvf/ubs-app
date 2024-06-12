@@ -19,7 +19,7 @@
                     Livewire.dispatch('patient-list-render');
                 })
 
-            });
+            }, { once: true });
         </script>
     </x-slot>
 

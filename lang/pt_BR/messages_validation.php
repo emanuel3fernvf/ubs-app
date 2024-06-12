@@ -29,4 +29,32 @@ return [
             'address_neighborhood.max' => 'O campo bairro não deve ter mais que :max caracteres.',
         ],
     ],
+    'professional' => [
+        'base' => [
+            'name.required' => 'O campo nome é obrigatório.',
+            'name.max' => 'O campo nome não deve ter mais que :max caracteres.',
+
+            'crm.required' => 'O campo CRM é obrigatório.',
+
+            'user_id.required' => 'O campo usuário é obrigatório.',
+            'user_id.integer' => 'O campo usuário deve ser um número inteiro.',
+            'user_id.in' => 'Usuário inválido.',
+
+            'specialty_id.required' => 'O campo especialidade é obrigatório.',
+            'specialty_id.integer' => 'O campo especialidade deve ser um número inteiro.',
+            'specialty_id.in' => 'Especialidade inválida.',
+
+            'status.required' => 'O campo status é obrigatório.',
+            'status.in' => 'O status selecionado é inválido.',
+        ],
+    ],
+    'specialty' => [
+        'base' => [
+            'name.required' => 'O campo nome é obrigatório.',
+            'name.max' => 'O campo nome não deve ter mais que :max caracteres.',
+
+            'status.required' => 'O campo status é obrigatório.',
+            'status.in' => 'O status selecionado é inválido.',
+        ],
+    ],
 ];

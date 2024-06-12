@@ -4,7 +4,7 @@
         data-bs-keyboard="false" tabindex="-1" wire:ignore.self
         aria-labelledby="patientFormModalLabel" aria-hidden="true">
 
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="patientFormModalLabel">
