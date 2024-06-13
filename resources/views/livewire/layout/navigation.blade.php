@@ -20,7 +20,7 @@ new class extends Component
     <div class="container-fluid navbar-container content-p sidebar-margin">
         <a class="navbar-brand" href="#">
             <x-application-logo width="50" height="50"/>
-            Bootstrap
+            UBS App
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

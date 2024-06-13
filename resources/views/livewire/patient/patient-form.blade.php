@@ -58,30 +58,6 @@
                                 <x-input-error class="mt-2" :messages="$errors->get('status')" />
                             </div>
 
-                            <div class="col-12 mb-3">
-                                <x-input-label for="address_street" :value="__('Rua:')" />
-                                <x-text-input wire:model="address_street" id="address_street" name="address_street" type="text" required autocomplete="off" />
-                                <x-input-error class="mt-2" :messages="$errors->get('address_street')" />
-                            </div>
-
-                            <div class="col-12 mb-3">
-                                <x-input-label for="address_number" :value="__('Número:')" />
-                                <x-text-input wire:model="address_number" id="address_number" name="address_number" type="text" required autocomplete="off" />
-                                <x-input-error class="mt-2" :messages="$errors->get('address_number')" />
-                            </div>
-
-                            <div class="col-12 mb-3">
-                                <x-input-label for="address_complement" :value="__('Complemento:')" />
-                                <x-text-input wire:model="address_complement" id="address_complement" name="address_complement" type="text" required autocomplete="off" />
-                                <x-input-error class="mt-2" :messages="$errors->get('address_complement')" />
-                            </div>
-
-                            <div class="col-12 mb-3">
-                                <x-input-label for="address_neighborhood" :value="__('Bairro:')" />
-                                <x-text-input wire:model="address_neighborhood" id="address_neighborhood" name="address_neighborhood" type="text" required autocomplete="off" />
-                                <x-input-error class="mt-2" :messages="$errors->get('address_neighborhood')" />
-                            </div>
-
                         </div>
 
                     </form>

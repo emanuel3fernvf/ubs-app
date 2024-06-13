@@ -18,6 +18,9 @@ Route::middleware(['auth', 'verified'])
 
         Route::view('/profissional', 'professional')
             ->name('.professional');
+
+        Route::view('/endereco', 'address')
+            ->name('.address');
     });
 
 Route::view('perfil', 'profile')

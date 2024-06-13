@@ -48,6 +48,16 @@ new class extends Component
                     <span class="item-description">Profissional</span>
                 </a>
             </li>
+
+            <li class="side_item @if (request()->routeIs('dashboard.address')) active @endif">
+                <a href="{{ route('dashboard.address') }}"
+                    data-bs-toggle="tooltip"
+                    data-bs-title="{{ __('Endereço') }}"
+                    data-bs-custom-class="custom-tooltip">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span class="item-description">Endereço</span>
+                </a>
+            </li>
         </ul>
 
         <button id="open_btn">

@@ -15,18 +15,6 @@ return [
 
             'status.required' => 'O campo status é obrigatório.',
             'status.in' => 'O status selecionado é inválido.',
-
-            'address_street.required' => 'O campo rua é obrigatório.',
-            'address_street.max' => 'O campo rua não deve ter mais que :max caracteres.',
-
-            'address_number.required' => 'O campo número é obrigatório.',
-            'address_number.integer' => 'O campo número deve ser um número inteiro.',
-
-            'address_complement.required' => 'O campo complemento é obrigatório.',
-            'address_complement.max' => 'O campo complemento não deve ter mais que :max caracteres.',
-
-            'address_neighborhood.required' => 'O campo bairro é obrigatório.',
-            'address_neighborhood.max' => 'O campo bairro não deve ter mais que :max caracteres.',
         ],
     ],
     'professional' => [
@@ -55,6 +43,24 @@ return [
 
             'status.required' => 'O campo status é obrigatório.',
             'status.in' => 'O status selecionado é inválido.',
+        ],
+    ],
+    'address' => [
+        'base' => [
+            'city.required' => 'O campo cidade é obrigatório.',
+            'city.max' => 'O campo cidade não deve ter mais que :max caracteres.',
+
+            'street.required' => 'O campo rua é obrigatório.',
+            'street.max' => 'O campo rua não deve ter mais que :max caracteres.',
+
+            'number.required' => 'O campo número é obrigatório.',
+            'number.integer' => 'O campo número deve ser um número inteiro.',
+
+            'complement.required' => 'O campo complemento é obrigatório.',
+            'complement.max' => 'O campo complemento não deve ter mais que :max caracteres.',
+
+            'neighborhood.required' => 'O campo bairro é obrigatório.',
+            'neighborhood.max' => 'O campo bairro não deve ter mais que :max caracteres.',
         ],
     ],
 ];

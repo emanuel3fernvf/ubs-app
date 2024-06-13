@@ -18,4 +18,52 @@ return [
             'delete' => 'Tem certeza que deseja remover este paciente?',
         ],
     ],
+    'specialty' => [
+        'success' => [
+            'delete' => 'Especialidade removida com sucesso.',
+            'create' => 'Especialidade salva com sucesso.',
+            'update' => 'Especialidade atualizada com sucesso.',
+        ],
+        'error' => [
+            'delete' => 'Erro ao remover a especialidade.',
+            'create' => 'Erro ao salvar a especialidade.',
+            'update' => 'Erro ao atualizar a especialidade.',
+            'find' => 'Erro ao mostrar a especialidade.',
+        ],
+        'confirmation' => [
+            'delete' => 'Tem certeza que deseja remover esta especialidade?',
+        ],
+    ],
+    'professional' => [
+        'success' => [
+            'delete' => 'Profissional removido com sucesso.',
+            'create' => 'Profissional salvo com sucesso.',
+            'update' => 'Profissional atualizado com sucesso.',
+        ],
+        'error' => [
+            'delete' => 'Erro ao remover o profissional.',
+            'create' => 'Erro ao salvar o profissional.',
+            'update' => 'Erro ao atualizar o profissional.',
+            'find' => 'Erro ao mostrar o profissional.',
+        ],
+        'confirmation' => [
+            'delete' => 'Tem certeza que deseja remover este profissional?',
+        ],
+    ],
+    'address' => [
+        'success' => [
+            'delete' => 'Endereço removido com sucesso.',
+            'create' => 'Endereço salvo com sucesso.',
+            'update' => 'Endereço atualizado com sucesso.',
+        ],
+        'error' => [
+            'delete' => 'Erro ao remover o endereço.',
+            'create' => 'Erro ao salvar o endereço.',
+            'update' => 'Erro ao atualizar o endereço.',
+            'find' => 'Erro ao mostrar o endereço.',
+        ],
+        'confirmation' => [
+            'delete' => 'Tem certeza que deseja remover este endereço?',
+        ],
+    ],
 ];

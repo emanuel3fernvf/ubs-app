@@ -1,42 +1,42 @@
 <?php
 
-namespace App\Livewire\Patient;
+namespace App\Livewire\Address;
 
-use App\Http\Requests\Patient\PatientCreateRequest;
-use App\Http\Requests\Patient\PatientUpdateRequest;
-use App\Services\Patient\PatientService;
+use App\Http\Requests\Address\AddressCreateRequest;
+use App\Http\Requests\Address\AddressUpdateRequest;
+use App\Services\Address\AddressService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class PatientForm extends Component
+class AddressForm extends Component
 {
-    public $patientId;
+    public $addressId;
 
-    public $name;
+    public $city;
 
-    public $cpf;
+    public $street;
 
-    public $birth_date;
+    public $number;
 
-    public $phone;
+    public $complement;
 
-    public $status;
+    public $neighborhood;
 
     public $responseType;
 
-    const PERMISSION_KEY = 'patient';
+    const PERMISSION_KEY = 'address';
 
     const PER_PAGE = 10;
 
     public function render()
     {
-        return view('livewire.patient.patient-form');
+        return view('livewire.address.address-form');
     }
 
     public function submit()
     {
-        if (! $this->patientId) {
+        if (! $this->addressId) {
             return $this->save();
         }
 
@@ -50,10 +50,10 @@ class PatientForm extends Component
             abort(403, __('messages.unauthorized'));
         }
 
-        $service = new PatientService(Auth::user());
+        $service = new AddressService(Auth::user());
         $service->permission = $permission;
 
-        $request = new PatientCreateRequest();
+        $request = new AddressCreateRequest();
 
         $validated = $this->validate(
             $request->rules(),
@@ -71,7 +71,7 @@ class PatientForm extends Component
             );
         }
 
-        $this->dispatch('close-patient-form-modal');
+        $this->dispatch('close-address-form-modal');
 
         $this->reset();
 
@@ -88,17 +88,17 @@ class PatientForm extends Component
             abort(403, __('messages.unauthorized'));
         }
 
-        $service = new PatientService(Auth::user());
+        $service = new AddressService(Auth::user());
         $service->permission = $permission;
 
-        $request = new PatientUpdateRequest();
+        $request = new AddressUpdateRequest();
 
         $validated = $this->validate(
             $request->rules(),
             $request->messages()
         );
 
-        $response = $service->update($validated, intval($this->patientId));
+        $response = $service->update($validated, intval($this->addressId));
 
         if (! $response['success']) {
             $this->responseType = 'error';
@@ -109,7 +109,7 @@ class PatientForm extends Component
             );
         }
 
-        $this->dispatch('close-patient-form-modal');
+        $this->dispatch('close-address-form-modal');
 
         $this->reset();
 
@@ -119,7 +119,7 @@ class PatientForm extends Component
         );
     }
 
-    #[On('patient-new')]
+    #[On('address-new')]
     public function new()
     {
         $permission = 'create';
@@ -130,11 +130,11 @@ class PatientForm extends Component
         $this->reset();
         $this->resetErrorBag();
 
-        return $this->dispatch('open-patient-form-modal');
+        return $this->dispatch('open-address-form-modal');
     }
 
-    #[On('patient-edit')]
-    public function edit(int $patientId)
+    #[On('address-edit')]
+    public function edit(int $addressId)
     {
         $permission = 'edit';
         if (! $permission) {
@@ -144,10 +144,10 @@ class PatientForm extends Component
         $this->reset();
         $this->resetErrorBag();
 
-        $service = new PatientService(Auth::user());
+        $service = new AddressService(Auth::user());
         $service->permission = $permission;
 
-        $response = $service->show($patientId);
+        $response = $service->show($addressId);
 
         if (! $response['success']) {
             $this->responseType = 'error';
@@ -158,16 +158,16 @@ class PatientForm extends Component
             );
         }
 
-        $patient = $response['data']['patient'];
+        $address = $response['data']['address'];
 
-        $this->patientId = $patientId;
+        $this->addressId = $addressId;
 
-        $this->name = $patient->name;
-        $this->cpf = $patient->cpf;
-        $this->birth_date = $patient->birth_date->format('Y-m-d');
-        $this->phone = $patient->phone;
-        $this->status = $patient->status;
+        $this->city = $address->city;
+        $this->street = $address->street;
+        $this->number = $address->number;
+        $this->complement = $address->complement;
+        $this->neighborhood = $address->neighborhood;
 
-        return $this->dispatch('open-patient-form-modal');
+        return $this->dispatch('open-address-form-modal');
     }
 }

@@ -1,12 +1,26 @@
 <?php
 
-namespace App\Http\Requests\Patient;
+namespace App\Http\Requests\Address;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class PatientBaseRequest extends FormRequest
+class AddressUpdateRequest extends FormRequest
 {
+    /**
+     * @var AddressBaseRequest
+     */
+    private $baseRequest;
+
+    /**
+     * Request constructor.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->baseRequest = new AddressBaseRequest;
+    }
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -22,13 +36,7 @@ class PatientBaseRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name' => 'required|max:50',
-            'cpf' => 'required',
-            'birth_date' => 'required|date',
-            'phone' => 'required',
-            'status' => ['required', Rule::in('active', 'inactive')],
-        ];
+        return $this->baseRequest->rules();
     }
 
     /**
@@ -36,6 +44,6 @@ class PatientBaseRequest extends FormRequest
      */
     public function messages(): array
     {
-        return __('messages_validation.patient.base');
+        return $this->baseRequest->messages();
     }
 }
