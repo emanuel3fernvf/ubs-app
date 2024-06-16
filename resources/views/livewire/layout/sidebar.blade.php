@@ -49,6 +49,16 @@ new class extends Component
                 </a>
             </li>
 
+            <li class="side_item @if (request()->routeIs('dashboard.unit')) active @endif">
+                <a href="{{ route('dashboard.unit') }}"
+                    data-bs-toggle="tooltip"
+                    data-bs-title="{{ __('Unidade') }}"
+                    data-bs-custom-class="custom-tooltip">
+                    <i class="fas fa-clinic-medical"></i>
+                    <span class="item-description">Unidade</span>
+                </a>
+            </li>
+
             <li class="side_item @if (request()->routeIs('dashboard.address')) active @endif">
                 <a href="{{ route('dashboard.address') }}"
                     data-bs-toggle="tooltip"

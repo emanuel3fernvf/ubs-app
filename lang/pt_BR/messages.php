@@ -66,4 +66,20 @@ return [
             'delete' => 'Tem certeza que deseja remover este endereço?',
         ],
     ],
+    'unit' => [
+        'success' => [
+            'delete' => 'Unidade removida com sucesso.',
+            'create' => 'Unidade salva com sucesso.',
+            'update' => 'Unidade atualizada com sucesso.',
+        ],
+        'error' => [
+            'delete' => 'Erro ao remover a unidade.',
+            'create' => 'Erro ao salvar a unidade.',
+            'update' => 'Erro ao atualizar a unidade.',
+            'find' => 'Erro ao mostrar a unidade.',
+        ],
+        'confirmation' => [
+            'delete' => 'Tem certeza que deseja remover esta unidade?',
+        ],
+    ],
 ];

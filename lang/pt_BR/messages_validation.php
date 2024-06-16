@@ -63,4 +63,13 @@ return [
             'neighborhood.max' => 'O campo bairro não deve ter mais que :max caracteres.',
         ],
     ],
+    'unit' => [
+        'base' => [
+            'name.required' => 'O campo nome é obrigatório.',
+            'name.max' => 'O campo nome não deve ter mais que :max caracteres.',
+
+            'status.required' => 'O campo status é obrigatório.',
+            'status.in' => 'O status selecionado é inválido.',
+        ],
+    ],
 ];

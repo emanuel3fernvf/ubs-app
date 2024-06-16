@@ -21,6 +21,9 @@ Route::middleware(['auth', 'verified'])
 
         Route::view('/endereco', 'address')
             ->name('.address');
+
+        Route::view('/unidade', 'unit')
+            ->name('.unit');
     });
 
 Route::view('perfil', 'profile')

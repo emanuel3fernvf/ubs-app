@@ -51,10 +51,6 @@ docker compose exec app php artisan key:generate
 Executar as migrations:
 ```bash
 docker compose exec app php artisan migrate --force
-
-Rodar o npm:
-```bash
-npm install
 ```
 
 Resolver erros de permissões de pastas.
