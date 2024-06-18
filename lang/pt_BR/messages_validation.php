@@ -72,4 +72,23 @@ return [
             'status.in' => 'O status selecionado é inválido.',
         ],
     ],
+    'schedule' => [
+        'base' => [
+            'professional_id.required' => 'O campo profissional é obrigatório.',
+            'professional_id.integer' => 'O campo profissional deve ser um número inteiro.',
+            'professional_id.in' => 'O profissional selecionado é inválido.',
+
+            'patient_id.required' => 'O campo paciente é obrigatório.',
+            'patient_id.integer' => 'O campo paciente deve ser um número inteiro.',
+            'patient_id.in' => 'O paciente selecionado é inválido.',
+
+            'date.required' => 'O campo data é obrigatório.',
+            'date.date' => 'O campo data deve ser uma data válida.',
+
+            'time.required' => 'O campo hora é obrigatório.',
+            'time.date_format' => 'O campo hora deve corresponder ao formato :format.',
+            'time.after_or_equal' => 'O campo hora deve ser uma data posterior ou igual a :date.',
+            'time.before_or_equal' => 'O campo hora deve ser uma data anterior ou igual a :date',
+        ],
+    ],
 ];

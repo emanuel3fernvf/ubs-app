@@ -24,6 +24,9 @@ Route::middleware(['auth', 'verified'])
 
         Route::view('/unidade', 'unit')
             ->name('.unit');
+
+        Route::view('/agendamento', 'schedule')
+            ->name('.schedule');
     });
 
 Route::view('perfil', 'profile')

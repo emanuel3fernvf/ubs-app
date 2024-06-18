@@ -82,4 +82,20 @@ return [
             'delete' => 'Tem certeza que deseja remover esta unidade?',
         ],
     ],
+    'schedule' => [
+        'success' => [
+            'delete' => 'Agendamento removido com sucesso.',
+            'create' => 'Agendamento salvo com sucesso.',
+            'update' => 'Agendamento atualizado com sucesso.',
+        ],
+        'error' => [
+            'delete' => 'Erro ao remover o agendamento.',
+            'create' => 'Erro ao salvar o agendamento.',
+            'update' => 'Erro ao atualizar o agendamento.',
+            'find' => 'Erro ao mostrar o agendamento.',
+        ],
+        'confirmation' => [
+            'delete' => 'Tem certeza que deseja remover este agendamento?',
+        ],
+    ],
 ];

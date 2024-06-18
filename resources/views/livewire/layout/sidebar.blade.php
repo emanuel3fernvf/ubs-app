@@ -68,6 +68,16 @@ new class extends Component
                     <span class="item-description">Endereço</span>
                 </a>
             </li>
+
+            <li class="side_item @if (request()->routeIs('dashboard.schedule')) active @endif">
+                <a href="{{ route('dashboard.schedule') }}"
+                    data-bs-toggle="tooltip"
+                    data-bs-title="{{ __('Agendamento') }}"
+                    data-bs-custom-class="custom-tooltip">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span class="item-description">Agendamento</span>
+                </a>
+            </li>
         </ul>
 
         <button id="open_btn">
