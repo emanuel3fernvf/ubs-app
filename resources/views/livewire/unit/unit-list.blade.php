@@ -20,7 +20,7 @@
                 <tr>
                     <td>{{ $unit->id }}</td>
                     <td>{{ $unit->name }}</td>
-                    <td>{{ $unit->status }}</td>
+                    <td>{{ __('texts.values.'.$unit->status) }}</td>
                     <td class="text-center">
                         <div class="dropstart">
                             <button class="btn btn-outline-light btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">

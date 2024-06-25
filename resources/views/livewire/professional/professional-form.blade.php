@@ -23,10 +23,9 @@
                 <div class="modal-body">
                     <form wire:submit.prevent="submit">
                         <div class="form-row mt-3 px-3">
-
                             <div class="col-12 mb-3">
                                 <x-input-label for="user_id" :value="__('Usuário:')" />
-                                <x-select-input wire:model="user_id" id="user_id" name="user_id" required>
+                                <x-select-input wire:model.live="user_id" id="user_id" name="user_id" required>
                                     <option value="">Selecione</option>
                                     @foreach ($users as $user)
                                         <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -37,13 +36,13 @@
 
                             <div class="col-12 mb-3">
                                 <x-input-label for="crm" :value="__('CRM:')" />
-                                <x-text-input wire:model="crm" id="crm" name="crm" type="text" required autocomplete="off" />
+                                <x-text-input wire:model.live="crm" id="crm" name="crm" type="text" required autocomplete="off" />
                                 <x-input-error class="mt-2" :messages="$errors->get('crm')" />
                             </div>
 
                             <div class="col-12 mb-3">
                                 <x-input-label for="specialty_id" :value="__('Especialidade:')" />
-                                <x-select-input wire:model="specialty_id" id="specialty_id" name="specialty_id" required>
+                                <x-select-input wire:model.live="specialty_id" id="specialty_id" name="specialty_id" required>
                                     <option value="">Selecione</option>
                                     @foreach ($specialties as $specialty)
                                         <option value="{{ $specialty->id }}">{{ $specialty->name }}</option>
@@ -53,8 +52,19 @@
                             </div>
 
                             <div class="col-12 mb-3">
+                                <x-input-label for="position_id" :value="__('Cargo:')" />
+                                <x-select-input wire:model.live="position_id" id="position_id" name="position_id" required>
+                                    <option value="">Selecione</option>
+                                    @foreach ($positions as $position)
+                                        <option value="{{ $position->id }}">{{ $position->name }}</option>
+                                    @endforeach
+                                </x-select-input>
+                                <x-input-error class="mt-2" :messages="$errors->get('position_id')" />
+                            </div>
+
+                            <div class="col-12 mb-3">
                                 <x-input-label for="status" :value="__('Status:')" />
-                                <x-select-input wire:model="status" id="status" name="status" required>
+                                <x-select-input wire:model.live="status" id="status" name="status" required>
                                     <option value="">Selecione</option>
                                     <option value="active">Ativo</option>
                                     <option value="inactive">Inativo</option>

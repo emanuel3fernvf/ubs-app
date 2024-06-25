@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Specialty;
 
+use App\Helpers\Helper;
 use App\Services\Specialty\SpecialtyService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
@@ -25,7 +26,10 @@ class SpecialtyList extends Component
     #[On('specialty-list-render')]
     public function render()
     {
-        $permission = 'permission';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'read');
+        if (! $permission) {
+            return view('components.unauthorized');
+        }
 
         $service = new SpecialtyService(Auth::user());
         $specialties = $service->listWithPagination([], self::PER_PAGE);
@@ -44,9 +48,9 @@ class SpecialtyList extends Component
 
     public function delete(bool $confirmation = false)
     {
-        $permission = 'specialty';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $service = new SpecialtyService(Auth::user());

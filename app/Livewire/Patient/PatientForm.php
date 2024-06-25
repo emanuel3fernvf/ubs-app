@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Patient;
 
+use App\Helpers\Helper;
 use App\Http\Requests\Patient\PatientCreateRequest;
 use App\Http\Requests\Patient\PatientUpdateRequest;
 use App\Services\Patient\PatientService;
@@ -31,6 +32,11 @@ class PatientForm extends Component
 
     public function render()
     {
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'read');
+        if (! $permission) {
+            return view('components.unauthorized');
+        }
+
         return view('livewire.patient.patient-form');
     }
 
@@ -45,9 +51,9 @@ class PatientForm extends Component
 
     public function save()
     {
-        $permission = 'save';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $service = new PatientService(Auth::user());

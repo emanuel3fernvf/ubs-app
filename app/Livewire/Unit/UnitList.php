@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Unit;
 
+use App\Helpers\Helper;
 use App\Services\Unit\UnitService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
@@ -25,7 +26,10 @@ class UnitList extends Component
     #[On('unit-list-render')]
     public function render()
     {
-        $permission = 'permission';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
+        if (! $permission) {
+            return view('components.unauthorized');
+        }
 
         $service = new UnitService(Auth::user());
         $units = $service->listWithPagination([], self::PER_PAGE);
@@ -44,9 +48,9 @@ class UnitList extends Component
 
     public function delete(bool $confirmation = false)
     {
-        $permission = 'unit';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $service = new UnitService(Auth::user());

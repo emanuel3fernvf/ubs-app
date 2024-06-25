@@ -67,3 +67,19 @@ Para acesso ao projeto clique [neste link](http://localhost).
 
 #### PHPMyAdmin:
 Para acessar o PHPMyAdmin clique [neste link](http://localhost:8080).
+
+## Informações sobre o Usuário Administrador
+
+Ao rodar as migrations do projeto será criado um usuário administrador. Se houver um usuário com esse e-mail, ele será atualizado:
+
+- **Nome**: Administrador
+- **Email**: admin@ubsapp.com
+- **Senha**: 12345678
+
+Caso precise criar ou atualizar o usuário administrador, rode a seguinte seeder:
+
+```bash
+docker compose exec app php artisan db:seed --class=seeder_2024_06_25_102012_register_user_admin
+```
+
+Se for preciso, o usuário poderá ser alterado acessando o menu Usuário.

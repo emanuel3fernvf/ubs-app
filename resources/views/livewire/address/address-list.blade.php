@@ -20,7 +20,7 @@
                 <tr>
                     <td>{{ $address->id }}</td>
                     <td>{{ $address->name }}</td>
-                    <td>{{ $address->status }}</td>
+                    <td>{{ __('texts.values.'.$address->status) }}</td>
                     <td class="text-center">
                         <div class="dropstart">
                             <button class="btn btn-outline-light btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Unit;
 
+use App\Helpers\Helper;
 use App\Http\Requests\Unit\UnitCreateRequest;
 use App\Http\Requests\Unit\UnitUpdateRequest;
 use App\Services\Unit\UnitService;
@@ -25,6 +26,11 @@ class UnitForm extends Component
 
     public function render()
     {
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'read');
+        if (! $permission) {
+            return view('components.unauthorized');
+        }
+
         return view('livewire.unit.unit-form');
     }
 
@@ -39,9 +45,9 @@ class UnitForm extends Component
 
     public function save()
     {
-        $permission = 'save';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $service = new UnitService(Auth::user());
@@ -77,9 +83,9 @@ class UnitForm extends Component
 
     private function update()
     {
-        $permission = 'update';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $service = new UnitService(Auth::user());
@@ -116,9 +122,9 @@ class UnitForm extends Component
     #[On('unit-new')]
     public function new()
     {
-        $permission = 'create';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $this->reset();
@@ -130,9 +136,9 @@ class UnitForm extends Component
     #[On('unit-edit')]
     public function edit(int $unitId)
     {
-        $permission = 'edit';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $this->reset();

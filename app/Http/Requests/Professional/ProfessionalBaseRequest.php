@@ -20,12 +20,16 @@ class ProfessionalBaseRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(array $users, array $specialties): array
-    {
+    public function rules(
+        array $users,
+        array $specialties,
+        array $positions
+    ): array {
         return [
             'crm' => 'required',
             'user_id' => ['required', 'integer', Rule::in($users)],
             'specialty_id' => ['required', 'integer', Rule::in($specialties)],
+            'position_id' => ['required', 'integer', Rule::in($positions)],
             'status' => ['required', Rule::in('active', 'inactive')],
         ];
     }

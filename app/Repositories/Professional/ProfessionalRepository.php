@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Professional;
 
+use App\Models\Position;
 use App\Models\Professional;
 use App\Models\Specialty;
 use App\Models\User;
@@ -126,11 +127,11 @@ class ProfessionalRepository
     public function users(?int $professionalId = null): Collection
     {
         return User::whereDoesntHave(
-            'professionals',
+            'professional',
             function ($q) use ($professionalId) {
                 $q->when($professionalId,
                     function ($q) use ($professionalId) {
-                        $q->where('id', $professionalId);
+                        $q->whereNot('id', $professionalId);
                     }
                 );
             }
@@ -144,5 +145,13 @@ class ProfessionalRepository
     public function specialties(): Collection
     {
         return Specialty::where('status', 'active')->get();
+    }
+
+    /**
+     * Returns the positions to add to the professional.
+     */
+    public function positions(): Collection
+    {
+        return Position::where('status', 'active')->get();
     }
 }

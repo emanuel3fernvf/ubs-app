@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Schedule;
 
+use App\Helpers\Helper;
 use App\Http\Requests\Schedule\ScheduleCreateRequest;
 use App\Http\Requests\Schedule\ScheduleUpdateRequest;
 use App\Services\Schedule\ScheduleService;
@@ -29,9 +30,9 @@ class ScheduleForm extends Component
 
     public function render()
     {
-        $permission = 'save';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'read');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $service = new ScheduleService(Auth::user());
@@ -59,9 +60,9 @@ class ScheduleForm extends Component
 
     public function save()
     {
-        $permission = 'save';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $service = new ScheduleService(Auth::user());
@@ -111,9 +112,9 @@ class ScheduleForm extends Component
 
     private function update()
     {
-        $permission = 'update';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $service = new ScheduleService(Auth::user());
@@ -164,9 +165,9 @@ class ScheduleForm extends Component
     #[On('schedule-new')]
     public function new()
     {
-        $permission = 'create';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $this->reset();
@@ -178,9 +179,9 @@ class ScheduleForm extends Component
     #[On('schedule-edit')]
     public function edit(int $scheduleId)
     {
-        $permission = 'edit';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $this->reset();

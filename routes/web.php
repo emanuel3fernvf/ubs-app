@@ -27,6 +27,9 @@ Route::middleware(['auth', 'verified'])
 
         Route::view('/agendamento', 'schedule')
             ->name('.schedule');
+
+        Route::view('/usuario', 'user')
+            ->name('.user');
     });
 
 Route::view('perfil', 'profile')

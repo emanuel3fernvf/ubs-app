@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Professional;
 
+use App\Helpers\Helper;
 use App\Services\Professional\ProfessionalService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
@@ -25,7 +26,10 @@ class ProfessionalList extends Component
     #[On('professional-list-render')]
     public function render()
     {
-        $permission = 'permission';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'read');
+        if (! $permission) {
+            return view('components.unauthorized');
+        }
 
         $service = new ProfessionalService(Auth::user());
         $professionals = $service->listWithPagination([], self::PER_PAGE);
@@ -44,9 +48,9 @@ class ProfessionalList extends Component
 
     public function delete(bool $confirmation = false)
     {
-        $permission = 'professional';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $service = new ProfessionalService(Auth::user());

@@ -24,7 +24,7 @@
                     <td>{{ $professional->name }}</td>
                     <td>{{ $professional->crm }}</td>
                     <td>{{ $professional->specialty_name }}</td>
-                    <td>{{ $professional->status }}</td>
+                    <td>{{ __('texts.values.'.$professional->status) }}</td>
                     <td class="text-center">
                         <div class="dropstart">
                             <button class="btn btn-outline-light btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -2,6 +2,7 @@
 
 namespace App\Services\Professional;
 
+use App\Models\Professional;
 use App\Models\User;
 use App\Repositories\Professional\ProfessionalRepository;
 use Illuminate\Database\Eloquent\Collection;
@@ -71,8 +72,13 @@ class ProfessionalService
                 ->first()
                 ->name;
 
-            $this->repository->create(
+            $professional = $this->repository->create(
                 array_merge($requestData, ['name' => $userName])
+            );
+
+            $professional->modelPosition()->updateOrCreate(
+                ['model_id' => $professional->id],
+                ['position_id' => $requestData['position_id']],
             );
 
             DB::commit();
@@ -105,7 +111,7 @@ class ProfessionalService
         DB::beginTransaction();
 
         try {
-            $userName = $this->users()
+            $userName = $this->users($professionalId)
                 ->where('id', $requestData['user_id'])
                 ->first()
                 ->name;
@@ -117,6 +123,11 @@ class ProfessionalService
             $this->repository->update(
                 array_merge($requestData, ['name' => $userName]),
                 $professional->id
+            );
+
+            $professional->modelPosition()->updateOrCreate(
+                ['model_id' => $professional->id],
+                ['position_id' => $requestData['position_id']],
             );
 
             DB::commit();
@@ -225,5 +236,13 @@ class ProfessionalService
     public function specialties(): Collection
     {
         return $this->repository->specialties();
+    }
+
+    /**
+     * Returns the positions to add to the professional.
+     */
+    public function positions(): Collection
+    {
+        return $this->repository->positions();
     }
 }

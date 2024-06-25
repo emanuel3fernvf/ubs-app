@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -22,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'status',
     ];
 
     /**
@@ -47,11 +49,41 @@ class User extends Authenticatable
         ];
     }
 
+    public function getPositionIdAttribute(): int
+    {
+        $modelPosition = $this->modelPosition()->first();
+        if (! $modelPosition) {
+            return '';
+        }
+
+        return $modelPosition->position_id;
+    }
+
+    public function getPositionKeyAttribute(): string
+    {
+        $modelPosition = $this->modelPosition()->first();
+        if (! $modelPosition) {
+            return '';
+        }
+
+        $position = $modelPosition->position;
+        if (! $position) {
+            return '';
+        }
+
+        return $position->key;
+    }
+
     /**
      * Return related professionals
      */
-    public function professionals(): HasMany
+    public function professional(): HasOne
     {
-        return $this->hasMany(Professional::class, 'user_id');
+        return $this->hasOne(Professional::class, 'user_id');
+    }
+
+    public function modelPosition(): HasMany
+    {
+        return $this->hasMany(ModelPosition::class, 'model_id');
     }
 }

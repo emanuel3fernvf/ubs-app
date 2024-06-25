@@ -34,9 +34,12 @@ class ProfessionalUpdateRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(array $users, array $specialties): array
-    {
-        return $this->baseRequest->rules($users, $specialties);
+    public function rules(
+        array $users,
+        array $specialties,
+        array $positions,
+    ): array {
+        return $this->baseRequest->rules($users, $specialties, $positions);
     }
 
     /**

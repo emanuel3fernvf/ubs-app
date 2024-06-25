@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'unauthorized' => 'Ação não autorizada!',
+    'unauthorized' => 'Não autorizado!',
     'patient' => [
         'success' => [
             'delete' => 'Paciente removido com sucesso.',
@@ -96,6 +96,22 @@ return [
         ],
         'confirmation' => [
             'delete' => 'Tem certeza que deseja remover este agendamento?',
+        ],
+    ],
+    'user' => [
+        'success' => [
+            'delete' => 'Usuário removido com sucesso.',
+            'create' => 'Usuário salvo com sucesso.',
+            'update' => 'Usuário atualizado com sucesso.',
+        ],
+        'error' => [
+            'delete' => 'Erro ao remover o usuário.',
+            'create' => 'Erro ao salvar o usuário.',
+            'update' => 'Erro ao atualizar o usuário.',
+            'find' => 'Erro ao mostrar o usuário.',
+        ],
+        'confirmation' => [
+            'delete' => 'Tem certeza que deseja remover este usuário?',
         ],
     ],
 ];

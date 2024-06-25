@@ -22,9 +22,5 @@
         <div class="actions p-3">
             <livewire:profile.update-password-form />
         </div>
-
-        <div class="actions p-3 mb-3">
-            <livewire:profile.delete-user-form />
-        </div>
     </div>
 </x-app-layout>

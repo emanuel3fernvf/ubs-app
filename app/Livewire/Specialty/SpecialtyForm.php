@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Specialty;
 
+use App\Helpers\Helper;
 use App\Http\Requests\Specialty\SpecialtyCreateRequest;
 use App\Http\Requests\Specialty\SpecialtyUpdateRequest;
 use App\Services\Specialty\SpecialtyService;
@@ -25,6 +26,11 @@ class SpecialtyForm extends Component
 
     public function render()
     {
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'read');
+        if (! $permission) {
+            return view('components.unauthorized');
+        }
+
         return view('livewire.specialty.specialty-form');
     }
 
@@ -39,9 +45,9 @@ class SpecialtyForm extends Component
 
     public function save()
     {
-        $permission = 'save';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $service = new SpecialtyService(Auth::user());
@@ -77,9 +83,9 @@ class SpecialtyForm extends Component
 
     private function update()
     {
-        $permission = 'update';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $service = new SpecialtyService(Auth::user());
@@ -116,9 +122,9 @@ class SpecialtyForm extends Component
     #[On('specialty-new')]
     public function new()
     {
-        $permission = 'create';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $this->reset();
@@ -130,9 +136,9 @@ class SpecialtyForm extends Component
     #[On('specialty-edit')]
     public function edit(int $specialtyId)
     {
-        $permission = 'edit';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $this->reset();

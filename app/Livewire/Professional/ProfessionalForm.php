@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Professional;
 
+use App\Helpers\Helper;
 use App\Http\Requests\Professional\ProfessionalCreateRequest;
 use App\Http\Requests\Professional\ProfessionalUpdateRequest;
 use App\Services\Professional\ProfessionalService;
@@ -19,6 +20,8 @@ class ProfessionalForm extends Component
 
     public $specialty_id;
 
+    public $position_id;
+
     public $status;
 
     public $responseType;
@@ -29,16 +32,21 @@ class ProfessionalForm extends Component
 
     public function render()
     {
-        $permission = self::PERMISSION_KEY;
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'read');
+        if (! $permission) {
+            return view('components.unauthorized');
+        }
 
         $service = new ProfessionalService(Auth::user());
 
         $users = $service->users($this->professionalId);
         $specialties = $service->specialties();
+        $positions = $service->positions();
 
         return view('livewire.professional.professional-form', compact(
             'users',
             'specialties',
+            'positions',
         ));
     }
 
@@ -53,9 +61,9 @@ class ProfessionalForm extends Component
 
     public function save()
     {
-        $permission = 'save';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $service = new ProfessionalService(Auth::user());
@@ -63,11 +71,12 @@ class ProfessionalForm extends Component
 
         $users = $service->users($this->professionalId)->pluck('id')->toArray();
         $specialties = $service->specialties()->pluck('id')->toArray();
+        $positions = $service->positions()->pluck('id')->toArray();
 
         $request = new ProfessionalCreateRequest();
 
         $validated = $this->validate(
-            $request->rules($users, $specialties),
+            $request->rules($users, $specialties, $positions),
             $request->messages()
         );
 
@@ -94,9 +103,9 @@ class ProfessionalForm extends Component
 
     private function update()
     {
-        $permission = 'update';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $service = new ProfessionalService(Auth::user());
@@ -106,9 +115,10 @@ class ProfessionalForm extends Component
 
         $users = $service->users($this->professionalId)->pluck('id')->toArray();
         $specialties = $service->specialties()->pluck('id')->toArray();
+        $positions = $service->positions()->pluck('id')->toArray();
 
         $validated = $this->validate(
-            $request->rules($users, $specialties),
+            $request->rules($users, $specialties, $positions),
             $request->messages()
         );
 
@@ -136,9 +146,9 @@ class ProfessionalForm extends Component
     #[On('professional-new')]
     public function new()
     {
-        $permission = 'create';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $this->reset();
@@ -150,9 +160,9 @@ class ProfessionalForm extends Component
     #[On('professional-edit')]
     public function edit(int $professionalId)
     {
-        $permission = 'edit';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $this->reset();
@@ -175,10 +185,10 @@ class ProfessionalForm extends Component
         $professional = $response['data']['professional'];
 
         $this->professionalId = $professionalId;
-
         $this->crm = $professional->crm;
         $this->user_id = $professional->user_id;
         $this->specialty_id = $professional->specialty_id;
+        $this->position_id = $professional->position_id;
         $this->status = $professional->status;
 
         return $this->dispatch('open-professional-form-modal');

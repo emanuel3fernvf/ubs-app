@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Address;
 
+use App\Helpers\Helper;
 use App\Http\Requests\Address\AddressCreateRequest;
 use App\Http\Requests\Address\AddressUpdateRequest;
 use App\Services\Address\AddressService;
@@ -31,6 +32,11 @@ class AddressForm extends Component
 
     public function render()
     {
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'read');
+        if (! $permission) {
+            return view('components.unauthorized');
+        }
+
         return view('livewire.address.address-form');
     }
 
@@ -45,9 +51,9 @@ class AddressForm extends Component
 
     public function save()
     {
-        $permission = 'save';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $service = new AddressService(Auth::user());
@@ -83,9 +89,9 @@ class AddressForm extends Component
 
     private function update()
     {
-        $permission = 'update';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $service = new AddressService(Auth::user());
@@ -122,9 +128,9 @@ class AddressForm extends Component
     #[On('address-new')]
     public function new()
     {
-        $permission = 'create';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $this->reset();
@@ -136,9 +142,9 @@ class AddressForm extends Component
     #[On('address-edit')]
     public function edit(int $addressId)
     {
-        $permission = 'edit';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $this->reset();

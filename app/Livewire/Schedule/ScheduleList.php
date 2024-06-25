@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Schedule;
 
+use App\Helpers\Helper;
 use App\Services\Schedule\ScheduleService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
@@ -25,7 +26,12 @@ class ScheduleList extends Component
     #[On('schedule-list-render')]
     public function render()
     {
-        $permission = 'permission';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'read');
+        if (! $permission) {
+            return view('components.error', [
+                'message' => __('messages.unauthorized'),
+            ]);
+        }
 
         $service = new ScheduleService(Auth::user());
         $schedules = $service->listWithPagination([], self::PER_PAGE);
@@ -44,9 +50,9 @@ class ScheduleList extends Component
 
     public function delete(bool $confirmation = false)
     {
-        $permission = 'schedule';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $service = new ScheduleService(Auth::user());

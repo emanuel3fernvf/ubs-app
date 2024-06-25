@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Address;
 
+use App\Helpers\Helper;
 use App\Services\Address\AddressService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
@@ -25,7 +26,10 @@ class AddressList extends Component
     #[On('address-list-render')]
     public function render()
     {
-        $permission = 'permission';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'read');
+        if (! $permission) {
+            return view('components.unauthorized');
+        }
 
         $service = new AddressService(Auth::user());
         $addresses = $service->listWithPagination([], self::PER_PAGE);
@@ -44,9 +48,9 @@ class AddressList extends Component
 
     public function delete(bool $confirmation = false)
     {
-        $permission = 'address';
+        $permission = Helper::checkPermission(self::PERMISSION_KEY, 'write');
         if (! $permission) {
-            abort(403, __('messages.unauthorized'));
+            return view('components.unauthorized');
         }
 
         $service = new AddressService(Auth::user());
